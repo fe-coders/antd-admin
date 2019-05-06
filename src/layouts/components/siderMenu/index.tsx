@@ -14,18 +14,17 @@ const SiderMenu: any = ({ collapsed }) => {
             return arr.map(child => {
                 if(child.children && child.children.length){
                     return (
-                        <SubMenu key={child.title} title={
-                            <Fragment>
-                                <Icon type={child.icon} /><span>{child.title}</span>
-                            </Fragment>
-                        }>
+                        <SubMenu 
+                            key={child.title} 
+                            title={<Fragment><Icon type={child.icon} /><span>{child.title}</span></Fragment>}
+                        >
                             {renderMenuItem(child.children)}
                         </SubMenu>
                     )
                 }else{
                     return (
                         <Menu.Item key={child.title}>
-                          <Link to={child.path}><Icon type={child.icon} /><span>{child.title}</span></Link>
+                            <Link to={child.path}><Icon type={child.icon} /><span>{child.title}</span></Link>
                         </Menu.Item>
                     );
                 }

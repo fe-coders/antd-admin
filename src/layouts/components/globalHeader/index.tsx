@@ -19,14 +19,7 @@ class GlobalHeader extends PureComponent<any, any> {
                         className={styles.menuIcon}
                         onClick={toggleCollapsed}
                     >
-                        <Icon
-                            type={
-                                classnames({
-                                    'menu-unfold': collapsed,
-                                    'menu-fold': !collapsed
-                                })
-                            }
-                        />
+                        <Icon type={classnames({ 'menu-unfold': collapsed, 'menu-fold': !collapsed})}/>
                     </Col>
                 </Row>
             </Header>
