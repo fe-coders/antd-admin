@@ -1,4 +1,5 @@
 import { IConfig } from 'umi-types';
+const path = require('path');
 
 // ref: https://umijs.org/config/
 const config: IConfig =  {
@@ -19,6 +20,8 @@ const config: IConfig =  {
       },
     }],
   ],
+  theme: './src/config/theme.config.ts',
+  publicPath: '/static'
 }
 
 export default config;

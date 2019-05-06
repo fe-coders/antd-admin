@@ -3,26 +3,52 @@ import DocumentTitle from 'react-document-title';
 import { Layout } from 'antd';
 
 import SiderMenu from './components/siderMenu/';
-import styles from './index.css';
+import GlobalHeader from './components/globalHeader/';
 
-const { Header, Content, Footer } = Layout;
+import { MenuData } from '@/config/menu.ts';
+import styles from './index.less';
 
-class BasicLayout extends PureComponent {
+const { Content, Footer } = Layout;
 
-  render() {
-    return (
-		<DocumentTitle title='Antd-Admin'>
-			<Layout>
-				<SiderMenu />
-				<Layout>
-					<Header></Header>
-					<Content></Content>
-					<Footer></Footer>
+interface BasicLayoutProps {
+	children: React.ReactNode
+}
+
+interface BasicLayoutState {
+	collapsed: Boolean
+}
+
+class BasicLayout extends PureComponent<BasicLayoutProps, BasicLayoutState> {
+
+	state = {
+		collapsed: false
+	}
+
+	toggleCollapsed = () => {
+		this.setState(({ collapsed }: BasicLayoutState) => ({
+			collapsed: !collapsed
+		}))
+	}
+
+	render() {
+		const { collapsed }: BasicLayoutState = this.state;
+
+		return (
+			<DocumentTitle title='ant-design'>
+				<Layout className={styles.mainLayout}>
+					<SiderMenu collapsed={collapsed} />
+					<Layout>
+						<GlobalHeader
+							collapsed={collapsed}
+							toggleCollapsed={this.toggleCollapsed}
+						/>
+						<Content>{this.props.children}</Content>
+						<Footer></Footer>
+					</Layout>
 				</Layout>
-			</Layout>
-		</DocumentTitle>
-    );
-  }
+			</DocumentTitle>
+		);
+	}
 
 }
 
